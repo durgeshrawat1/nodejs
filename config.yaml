@@ -1,0 +1,17 @@
+---
+version: "1.0"
+models:
+  - modelId: "anthropic.claude-v2"
+    provider: "anthropic"
+    default: true
+  - modelId: "ai21.j2-ultra-v1"
+    provider: "ai21"
+accessControl:
+  allowedOrigins:
+    - "http://localhost:80"
+  allowedMethods:
+    - "POST"
+    - "OPTIONS"
+  allowedHeaders:
+    - "Content-Type"
+    - "x-api-key"
