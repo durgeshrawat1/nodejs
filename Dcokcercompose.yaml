@@ -1,0 +1,21 @@
+version: '3.8'
+
+services:
+  bedrock-gateway:
+    image: public.ecr.aws/aws-gcr-solutions/bedrock-access-gateway:latest
+    environment:
+      AWS_REGION: ${AWS_REGION}
+      CORS_ORIGIN: "http://localhost:80"
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./config.yaml:/app/config.yaml
+
+  ui:
+    image: nginx:alpine
+    ports:
+      - "80:80"
+    volumes:
+      - ./frontend:/usr/share/nginx/html
+    depends_on:
+      - bedrock-gateway
